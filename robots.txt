@@ -1,0 +1,15 @@
+# robots.txt for DiDi Creative Entertainment
+# https://www.didicreative.com/
+
+User-agent: *
+Allow: /
+
+# 允許所有搜尋引擎爬取
+# 允許爬取所有檔案和目錄
+
+# Sitemap 位置
+Sitemap: https://www.didicreative.com/sitemap.xml
+
+# 如果需要禁止特定目錄，可以在下方添加
+# Disallow: /private/
+# Disallow: /admin/

@@ -1972,8 +1972,12 @@ main {
     }
     .member-desc {
         font-size: 0.8rem;
-        -webkit-line-clamp: 5;
-        line-clamp: 5;
+        line-height: 1.55;
+        display: block;
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        overflow: visible;
+        text-overflow: clip;
     }
     /* 手機版 CEO 描述文字置中 */
     .member-ceo .member-desc {
@@ -2120,40 +2124,110 @@ main {
 }
 
 /* =========================
-   方案介紹（圖片平鋪）
-   可調整：桌機三欄、陰影
+   方案範例（文字卡片 + 合作廠商）
 ========================= */
-.plans{ max-width: var(--max); margin: 30px auto; padding: 0 16px 40px; }
-.plans-wrap{ 
-    display: grid; 
-    gap: 16px;
-    padding: 0 20px; /* 增加左右邊距，避免貼邊 */
+.plans{
+    max-width: var(--max);
+    margin: 30px auto;
+    padding: 0 16px 20px;
 }
-.plans-wrap img{
-    width: 85%; /* 縮小15%（從100%到85%） */
+
+.plans-subtitle{
+    text-align: center;
+    margin: 28px 0 14px;
+    font-family: 'A', sans-serif;
+    font-size: clamp(24px, 3vw, 32px);
+    color: var(--bronze);
+    letter-spacing: 0.04em;
+}
+
+.plans-news-copy{
+    max-width: 900px;
+    margin: 0 auto 8px;
+    padding: 16px 18px;
+    border: 1px solid rgba(166, 124, 82, 0.2);
+    border-radius: 14px;
+    background: rgba(6, 0, 16, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    text-align: center;
+}
+
+.plans-news-title{
+    margin: 0 0 10px;
+    font-size: clamp(22px, 2.8vw, 28px);
+    font-weight: 700;
+    color: var(--bronze);
+    letter-spacing: 0.04em;
+}
+
+.plans-news-lead{
+    margin: 0 0 14px;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--bronze);
+}
+
+.plans-news-body{
+    margin: 0;
+    font-size: clamp(14px, 1.6vw, 16px);
+    font-weight: 400;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.plans-news-copy p:last-child{
+    margin-bottom: 0;
+}
+
+.plans-case-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 6px;
+}
+
+.plan-case-card{
+    border: 1px solid rgba(166, 124, 82, 0.2);
+    border-radius: 16px;
+    padding: 16px;
+    background: rgba(6, 0, 16, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    text-align: center;
+}
+
+.plan-case-card h4{
+    margin: 0 0 8px;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 600;
+    color: var(--bronze);
+}
+
+.plan-case-card p{
+    margin: 0;
+    font-size: clamp(14px, 1.7vw, 16px);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.plans-brand-wall{
+    margin-top: 10px;
+}
+
+.plans-brand-wall img{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     display: block;
-    margin: 0 auto; /* 置中顯示 */
-    box-shadow: none;
-    background: transparent;
-    border: none;
-    outline: none;
+    margin: 0 auto;
 }
-/* 手機版：減少左右留白 */
-@media (max-width: 980px){
-    .plans{ 
-        padding: 0 8px 40px; /* 減少左右邊距 */
-    }
-    .plans-wrap{ 
-        padding: 0 8px; /* 減少左右邊距 */
-    }
-    .plans-wrap img{
-        width: 75%; /* 縮小圖片，讓它不會太大 */
-    }
-}
+
 @media (min-width: 980px){
-    .plans-wrap{ 
-        grid-template-columns: repeat(3, 1fr);
-        padding: 0 30px; /* 電腦版增加更多邊距 */
+    .plans-case-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
     }
 }
 
@@ -2173,7 +2247,7 @@ main {
     -webkit-backdrop-filter: blur(10px);
     border-top: none; /* 移除原本的邊框 */
     padding: 40px 16px 30px;
-    margin-top: 100px; /* 增加與方案介紹的間距 */
+    margin-top: 40px; /* 微調回來一些留白 */
     position: relative;
 }
 /* 手機版：減少左右留白 */

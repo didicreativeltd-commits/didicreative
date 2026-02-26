@@ -1705,6 +1705,16 @@ main {
         aspect-ratio: 2/3; /* 320:480 = 2:3 */
         object-fit: cover;
     }
+    /* 手機版：輪播說明文字縮小，約 7 字一行 */
+    #case-kol .carousel .item-caption,
+    #case-film .carousel .item-caption,
+    #case-design .carousel .item-caption,
+    #case-short .carousel .item-caption,
+    #case-gmap .carousel .item-caption,
+    #case-plus .carousel .item-caption,
+    #team .case-block .carousel .item-caption {
+        font-size: 11px;
+    }
 }
 
 /* =========================
@@ -2000,15 +2010,15 @@ main {
     display: grid;
     gap: 16px;
     grid-template-columns: 1fr; /* 手機版單欄 */
-    margin-top: -20px; /* 往上移動，減少與上面的距離 */
+    margin-top: 24px; /* 與其他大標題底下的間距一致 */
 }
 
 /* 手機版：調整個人 IP 輪廓位置，更靠近 DIDI */
 @media (max-width: 899px) {
     .team-first-row {
         padding: 0 0.5rem; /* 與成員卡片對齊 */
-        gap: 4px; /* 大幅縮小間距，讓IP輪廓更靠近DIDI */
-        margin-top: -10px; /* 減少負margin，讓IP輪廓更靠近DIDI */
+        gap: 4px;
+        margin-top: 24px; /* 與其他大標題底下的間距一致 */
         grid-template-columns: 1fr; /* 手機版單欄 */
     }
     /* 確保蒂蒂置中，寬度等於兩個成員卡片（手機版是2欄布局），與成員卡片對齊 */
@@ -2141,16 +2151,31 @@ main {
     letter-spacing: 0.04em;
 }
 
+.plans-news-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px auto 0;
+    max-width: 1100px;
+    justify-items: center;
+}
+
 .plans-news-copy{
-    max-width: 900px;
-    margin: 0 auto 8px;
-    padding: 16px 18px;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1;
+    margin: 0;
+    padding: 28px 24px;
     border: 1px solid rgba(166, 124, 82, 0.2);
-    border-radius: 14px;
+    border-radius: 50%;
     background: rgba(6, 0, 16, 0.15);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .plans-news-title{
@@ -2170,7 +2195,7 @@ main {
 }
 
 .plans-news-body{
-    margin: 0;
+    margin: 0 0 10px;
     font-size: clamp(14px, 1.6vw, 16px);
     font-weight: 400;
     line-height: 1.75;

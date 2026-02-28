@@ -1485,12 +1485,11 @@ main {
 .carousel .track::-webkit-scrollbar {
     display: none; /* Chrome、Safari、Opera */
 }
-/* 只有社群圖文設計（3個項目）置中顯示 - 僅電腦版 */
+/* 社群圖文設計（2 張圖）：track 全寬、圖與其他區塊同大，置中顯示 - 僅電腦版 */
 @media (min-width: 981px) {
     .case-block[data-case-type="design"] .carousel .track {
         justify-content: center;
         margin: 0 auto;
-        max-width: fit-content;
     }
 }
 .carousel .item{
@@ -1498,7 +1497,13 @@ main {
     box-shadow: 0 8px 30px rgba(0,0,0,.12); /* 方形、不圓角 */
     position: relative; /* 確保邊框不會溢出 */
 }
-/* KOL 區塊：item 改為 flex 布局以容納文字 */
+/* 品牌營銷策略底下所有輪播：間距保留、間距透明；卡片不設陰影，避免陰影滲入間距變成灰色 */
+.case-block .carousel .track {
+    background: transparent;
+}
+.case-block .carousel .item {
+    box-shadow: none;
+}
 #case-kol .carousel .item {
     display: flex;
     flex-direction: column;
@@ -2055,24 +2060,23 @@ main {
     }
 }
 
-/* 電腦版：第一排 CEO + IP 輪廓，CEO 與成員對齊 */
+/* 電腦版：第一排 新媒體顧問（CEO）與下方 營運總監～數位總監 整排同寬 */
 @media (min-width: 900px) {
     .team-first-row {
-        /* 使用與成員相同的3列網格，CEO佔1列，IP輪播佔2列 */
-        grid-template-columns: repeat(3, 1fr);
-        align-items: start;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 0.75rem; /* 與 .members 同 */
         margin-top: 0;
-        justify-items: stretch;
-        padding: 0 0.75rem; /* 與成員卡片對齊 */
-        gap: 1rem; /* 與成員卡片間距一致 */
+        display: block; /* 單一區塊同寬，不用 grid */
     }
-    /* CEO 佔第1列，與成員對齊 */
+    /* 新媒體顧問（CEO）與成員整排同寬 */
     .team-first-row .member-ceo {
-        grid-column: 1;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         text-align: center;
-        justify-self: stretch;
     }
     /* IP 輪播佔第2-3列 */
     .team-first-row .ip-carousel-block {
@@ -2160,14 +2164,26 @@ main {
     justify-items: center;
 }
 
+/* 手機版：單欄排列，卡片較寬、字不超出框格 */
+@media (max-width: 600px) {
+    .plans-news-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .plans-news-copy {
+        max-width: 100%;
+        padding: 20px 16px;
+    }
+}
+
 .plans-news-copy{
     width: 100%;
     max-width: 320px;
-    aspect-ratio: 1;
+    /* 高度依內容，新聞下架框不會過高 */
     margin: 0;
     padding: 28px 24px;
     border: 1px solid rgba(166, 124, 82, 0.2);
-    border-radius: 50%;
+    border-radius: 16px; /* 圓角長方形 */
     background: rgba(6, 0, 16, 0.15);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -2175,7 +2191,31 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start; /* 標題從上方對齊，「新聞下架」與「危機公關」同高 */
+    overflow: hidden;
+    min-width: 0; /* 手機版可縮小，文字不超出框格 */
+}
+
+/* 白色說明文字在標題下方、剩餘空間內上下置中 */
+.plans-news-body-wrap{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.plans-news-body-wrap .plans-news-body{
+    width: 100%;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .plans-news-title{
